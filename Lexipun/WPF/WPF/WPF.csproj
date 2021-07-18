@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Authors>Lexipun</Authors>
+    <Product>WPF</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\DotNetFramework\DotNetFramework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Templates\Interfaces\" />
+    <Folder Include="Templates\Pages\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Lexipun</Authors>
+    <Company />
+    <Product />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="DataProcessing\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,6 @@
+C:\Personal\MyLibriaries\Lexipun\DotNetFramework\bin\Release\DotNetFramework.dll
+C:\Personal\MyLibriaries\Lexipun\DotNetFramework\bin\Release\DotNetFramework.pdb
+C:\Personal\MyLibriaries\Lexipun\DotNetFramework\obj\Release\DotNetFramework.csprojAssemblyReference.cache
+C:\Personal\MyLibriaries\Lexipun\DotNetFramework\obj\Release\DotNetFramework.csproj.CoreCompileInputs.cache
+C:\Personal\MyLibriaries\Lexipun\DotNetFramework\obj\Release\DotNetFramework.dll
+C:\Personal\MyLibriaries\Lexipun\DotNetFramework\obj\Release\DotNetFramework.pdb

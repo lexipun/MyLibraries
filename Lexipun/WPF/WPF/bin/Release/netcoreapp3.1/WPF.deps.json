@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "WPF/1.0.0": {
+        "dependencies": {
+          "DotNetFramework": "1.0.0"
+        },
+        "runtime": {
+          "WPF.dll": {}
+        }
+      },
+      "DotNetFramework/1.0.0": {
+        "runtime": {
+          "DotNetFramework.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "WPF/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DotNetFramework/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

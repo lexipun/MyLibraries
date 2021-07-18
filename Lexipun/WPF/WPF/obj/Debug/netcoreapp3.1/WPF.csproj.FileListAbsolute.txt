@@ -1,0 +1,17 @@
+C:\Personal\MyLibriaries\Lexipun\WPF\WPF\obj\Debug\netcoreapp3.1\WPF.AssemblyInfoInputs.cache
+C:\Personal\MyLibriaries\Lexipun\WPF\WPF\obj\Debug\netcoreapp3.1\WPF.AssemblyInfo.cs
+C:\Personal\MyLibriaries\Lexipun\WPF\WPF\obj\Debug\netcoreapp3.1\WPF.csproj.CoreCompileInputs.cache
+C:\Personal\MyLibriaries\Lexipun\WPF\WPF\bin\Debug\netcoreapp3.1\WPF.deps.json
+C:\Personal\MyLibriaries\Lexipun\WPF\WPF\bin\Debug\netcoreapp3.1\WPF.dll
+C:\Personal\MyLibriaries\Lexipun\WPF\WPF\bin\Debug\netcoreapp3.1\WPF.pdb
+C:\Personal\MyLibriaries\Lexipun\WPF\WPF\bin\Debug\netcoreapp3.1\DotNetFramework.dll
+C:\Personal\MyLibriaries\Lexipun\WPF\WPF\bin\Debug\netcoreapp3.1\DotNetFramework.pdb
+C:\Personal\MyLibriaries\Lexipun\WPF\WPF\obj\Debug\netcoreapp3.1\Templates\Pages\PopUpWindowForFillOrChangeDataTemplate.g.cs
+C:\Personal\MyLibriaries\Lexipun\WPF\WPF\obj\Debug\netcoreapp3.1\WPF_MarkupCompile.cache
+C:\Personal\MyLibriaries\Lexipun\WPF\WPF\obj\Debug\netcoreapp3.1\WPF_MarkupCompile.lref
+C:\Personal\MyLibriaries\Lexipun\WPF\WPF\obj\Debug\netcoreapp3.1\Templates\Pages\PopUpWindowForFillOrChangeDataTemplate.baml
+C:\Personal\MyLibriaries\Lexipun\WPF\WPF\obj\Debug\netcoreapp3.1\WPF.g.resources
+C:\Personal\MyLibriaries\Lexipun\WPF\WPF\obj\Debug\netcoreapp3.1\WPF.csproj.CopyComplete
+C:\Personal\MyLibriaries\Lexipun\WPF\WPF\obj\Debug\netcoreapp3.1\WPF.dll
+C:\Personal\MyLibriaries\Lexipun\WPF\WPF\obj\Debug\netcoreapp3.1\WPF.pdb
+C:\Personal\MyLibriaries\Lexipun\WPF\WPF\obj\Debug\netcoreapp3.1\WPF.csprojAssemblyReference.cache

@@ -1,0 +1,92 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "DotNetFramework/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/DotNetFramework.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DotNetFramework.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DotNetFramework/1.0.0": {
+      "type": "project",
+      "path": "../../DotNetFramework/DotNetFramework.csproj",
+      "msbuildProject": "../../DotNetFramework/DotNetFramework.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETCoreApp,Version=v3.1": [
+      "DotNetFramework >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Oleg\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Personal\\MyLibriaries\\Lexipun\\WPF\\WPF\\WPF.csproj",
+      "projectName": "WPF",
+      "projectPath": "C:\\Personal\\MyLibriaries\\Lexipun\\WPF\\WPF\\WPF.csproj",
+      "packagesPath": "C:\\Users\\Oleg\\.nuget\\packages\\",
+      "outputPath": "C:\\Personal\\MyLibriaries\\Lexipun\\WPF\\WPF\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Oleg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "netcoreapp3.1"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "projectReferences": {
+            "C:\\Personal\\MyLibriaries\\Lexipun\\DotNetFramework\\DotNetFramework.csproj": {
+              "projectPath": "C:\\Personal\\MyLibriaries\\Lexipun\\DotNetFramework\\DotNetFramework.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WPF": {
+            "privateAssets": "none"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
