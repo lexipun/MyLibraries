@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace Lexipun.DotNetFramework.DataProcessing
 {
-    public class PropertyProcessing<T> : IEnumerator<object>, IEnumerable
+    public class PropertyProcessing<T> : IDisposable
     {
         PropertyInfo[] _properties;
         readonly T _sourceObject;
@@ -439,11 +439,11 @@ namespace Lexipun.DotNetFramework.DataProcessing
             int indexOfTypes = 0;
 
 
-            foreach (var item in includingProperties)
+            while ( includingProperties.MoveNext())
             {
-                if (item.GetType().IsClass && item.GetType() != typeof(string))
+                if (includingProperties.GetCurrentType().IsClass && includingProperties.GetCurrentType() != typeof(string))
                 {
-                    Type[] tempTypes = GetAllIncludingPrimitiveTypes(item);
+                    Type[] tempTypes = GetAllIncludingPrimitiveTypes(includingProperties.GetCurrent());
                     Type[] resultingTypes = new Type[tempTypes.Length + indexOfTypes];
 
                     for (int i = 0; i < indexOfTypes; ++i)
@@ -460,7 +460,7 @@ namespace Lexipun.DotNetFramework.DataProcessing
                 }
                 else
                 {
-                    typesOfObjects[indexOfTypes] = item.GetType();
+                    typesOfObjects[indexOfTypes] = includingProperties.GetCurrentType();
                 }
                 ++indexOfTypes;
             }
@@ -473,10 +473,6 @@ namespace Lexipun.DotNetFramework.DataProcessing
         {
             _properties = null;
             _propertyPosition = _startPoint;
-        }
-        public IEnumerator GetEnumerator()
-        {
-            return this;
         }
 
         public string GetCurrentNameOfProperty()

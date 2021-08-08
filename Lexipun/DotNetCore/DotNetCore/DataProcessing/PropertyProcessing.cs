@@ -1,30 +1,34 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
 namespace Lexipun.DotNetFramework.DataProcessing
 {
-    public class PropertyProcessing<T> : IEnumerator<object>, IEnumerable
+    public class PropertyProcessing<T> : IDisposable
     {
         PropertyInfo[] _properties;
         readonly T _sourceObject;
         int _propertyPosition;
         const int _startPoint = -1;
         readonly int countOfProperties;
+        private string dateTimeFormat;
 
         public object SourceObject { get { return _sourceObject; } }
         public object Current { get => GetCurrent(); }
         public int GetCurrentPosition { get => _propertyPosition; }
         public int CountOfProperties { get => countOfProperties; }
+        public string DateTimeFormat { get => dateTimeFormat; set => dateTimeFormat = value; }
 
-        public PropertyProcessing(ref T obj)
+        public PropertyProcessing(T obj)
         {
             _properties = obj.GetType().GetProperties();
             _sourceObject = obj;
             _propertyPosition = _startPoint;
             countOfProperties = _properties.Length;
+            dateTimeFormat = "M/dd/yyyy";
         }
 
 
@@ -117,6 +121,28 @@ namespace Lexipun.DotNetFramework.DataProcessing
                             }
                             _properties[from].SetValue(_sourceObject, tempIncludingObject);
                         }
+                        else if (_properties[from].PropertyType == typeof(DateTime))
+                        {
+                            DateTime dateTime;
+
+                            if (!DateTime.TryParseExact(values[indexOfValue].ToString(), dateTimeFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime))
+                            {
+
+                                try
+                                {
+                                    dateTime = Convert.ToDateTime(values[indexOfValue].ToString());
+                                    continue;
+                                }
+                                catch (FormatException)
+                                {
+                                    return false;
+                                }
+
+                            }
+
+                            _properties[from].SetValue(_sourceObject, dateTime);
+
+                        }
                         else
                         {
                             const char dot = '.';
@@ -140,7 +166,7 @@ namespace Lexipun.DotNetFramework.DataProcessing
                             catch (ArgumentException)
                             {
                                 _properties[from].SetValue(_sourceObject, Convert.ToUInt32(tempNumber));
-                                return true;
+                                continue;
                             }
 
                         }
@@ -313,7 +339,7 @@ namespace Lexipun.DotNetFramework.DataProcessing
             if (objectType.IsClass && objectType != typeof(string))
             {
                 var includingClass = _properties[_propertyPosition].GetValue(_sourceObject);
-                PropertyProcessing<object> tempPropertyAutoProcessing = new PropertyProcessing<object>(ref includingClass);
+                PropertyProcessing<object> tempPropertyAutoProcessing = new PropertyProcessing<object>(includingClass);
 
                 return tempPropertyAutoProcessing.GetCurrent();
             }
@@ -409,16 +435,16 @@ namespace Lexipun.DotNetFramework.DataProcessing
 
         private Type[] GetAllIncludingPrimitiveTypes(object obj)
         {
-            PropertyProcessing<object> includingProperties = new PropertyProcessing<object>(ref obj);
+            PropertyProcessing<object> includingProperties = new PropertyProcessing<object>(obj);
             Type[] typesOfObjects = new Type[includingProperties._properties.Length];
             int indexOfTypes = 0;
 
 
-            foreach (var item in includingProperties)
+            while (includingProperties.MoveNext())
             {
-                if (item.GetType().IsClass && item.GetType() != typeof(string))
+                if (includingProperties.GetCurrentType().IsClass && includingProperties.GetCurrentType() != typeof(string))
                 {
-                    Type[] tempTypes = GetAllIncludingPrimitiveTypes(item);
+                    Type[] tempTypes = GetAllIncludingPrimitiveTypes(includingProperties.GetCurrent());
                     Type[] resultingTypes = new Type[tempTypes.Length + indexOfTypes];
 
                     for (int i = 0; i < indexOfTypes; ++i)
@@ -435,7 +461,7 @@ namespace Lexipun.DotNetFramework.DataProcessing
                 }
                 else
                 {
-                    typesOfObjects[indexOfTypes] = item.GetType();
+                    typesOfObjects[indexOfTypes] = includingProperties.GetCurrentType();
                 }
                 ++indexOfTypes;
             }
@@ -448,10 +474,6 @@ namespace Lexipun.DotNetFramework.DataProcessing
         {
             _properties = null;
             _propertyPosition = _startPoint;
-        }
-        public IEnumerator GetEnumerator()
-        {
-            return this;
         }
 
         public string GetCurrentNameOfProperty()
