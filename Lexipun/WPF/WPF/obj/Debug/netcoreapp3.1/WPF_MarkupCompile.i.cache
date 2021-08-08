@@ -16,5 +16,5 @@ TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 193-80497802
 Templates\Pages\PopUpWindowForFillOrChangeDataTemplate.xaml;
 
-False
+True
 

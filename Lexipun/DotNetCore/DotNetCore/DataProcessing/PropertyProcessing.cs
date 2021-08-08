@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Lexipun.DotNetCore.DataProcessing
+namespace Lexipun.DotNetFramework.DataProcessing
 {
     public class PropertyProcessing<T> : IEnumerator<object>, IEnumerable
     {
@@ -13,7 +13,6 @@ namespace Lexipun.DotNetCore.DataProcessing
         int _propertyPosition;
         const int _startPoint = -1;
         readonly int countOfProperties;
-
 
         public object SourceObject { get { return _sourceObject; } }
         public object Current { get => GetCurrent(); }
@@ -83,14 +82,16 @@ namespace Lexipun.DotNetCore.DataProcessing
 
         {
 
-            int indexOfValue = _startPoint;
+            int indexOfValue = _startPoint + 1;
             for (; (from < to) && (from < _properties.Length) && (indexOfValue < values.Length); ++from)
             {
                 if (_properties[from].CanWrite && _properties[from].SetMethod.IsPublic)
                 {
                     if (!(values[indexOfValue] is null))
                     {
-                        if (_properties[from].PropertyType == values[indexOfValue].GetType() || (_properties[from].PropertyType == typeof(string)))
+                        if (_properties[from].PropertyType == values[indexOfValue].GetType()
+                            || Nullable.GetUnderlyingType(_properties[from].PropertyType) == values[indexOfValue].GetType()
+                            || (_properties[from].PropertyType == typeof(string)))
                         {
                             _properties[from].SetValue(_sourceObject, values[indexOfValue]);
                         }

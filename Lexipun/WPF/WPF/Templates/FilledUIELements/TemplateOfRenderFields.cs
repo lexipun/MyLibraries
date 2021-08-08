@@ -48,7 +48,7 @@ namespace Lexipun.Templates.FilledUIELements.FilledUIELements
             MessageIncorrectData = "IncorrectData";
             FileFilter = "";
 
-            propertiesOfObject = new PropertyProcessing<object>(ref sourceObject);
+            propertiesOfObject = new PropertyProcessing<object>(sourceObject);
             IsReadOnly = false;
         }
 
@@ -58,7 +58,7 @@ namespace Lexipun.Templates.FilledUIELements.FilledUIELements
             MessageIncorrectData = "IncorrectData";
             FileFilter = "";
 
-            propertiesOfObject = new PropertyProcessing<object>(ref sourceObject);
+            propertiesOfObject = new PropertyProcessing<object>(sourceObject);
             IsReadOnly = isReadonly;
         }
 
@@ -66,14 +66,22 @@ namespace Lexipun.Templates.FilledUIELements.FilledUIELements
         public WrapPanel RenderOfFields()
         {
             listView.Children.Clear();
+            textBlocks.Clear();
+            uIElements.Clear();
+            indexesOfMarkedFieldsForUpdating.Clear();
+            indexToIndexOfProperties.Clear();
+            indexUniqueIdPair.Clear();
+
 
             propertiesOfObject.Reset();
             Dictionary<string, string> associativeNamesOfFields = null;
             IAssociativeNamesOfProperties associativeNames = propertiesOfObject.SourceObject as IAssociativeNamesOfProperties;
+
             if (associativeNames != null)
             {
                 associativeNamesOfFields = associativeNames.GetListOfFieldsNames();
             }
+
             WrapPanel wrapperOfField;
             TextBlock nameOfField;
             TextBlock messagingAboutWarning;

@@ -91,7 +91,8 @@ namespace Lexipun.Templates.Pages {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WPF;component/templates/pages/popupwindowforfillorchangedatatemplate.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WPF;V1.0.0.0;component/templates/pages/popupwindowforfillorchangedatatemplate.xa" +
+                    "ml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Templates\Pages\PopUpWindowForFillOrChangeDataTemplate.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
