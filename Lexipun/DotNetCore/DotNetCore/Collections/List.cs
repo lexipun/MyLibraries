@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DotNetCore.Collections
 {
-    class List<T> : ICloneable, ICollection<T>, IComparable<T>, IComparer<T>, IEnumerable<T>, IDisposable, IConvertible, IList<T>
+    public class List<T> : ICloneable, ICollection<T>, IComparable<T>, IComparer<T>, IEnumerable<T>, IDisposable, IConvertible, IList<T>
     {
         private T[] _array;
         private uint _size;
@@ -85,6 +85,8 @@ namespace DotNetCore.Collections
             {
                 throw new OutOfMemoryException("over much count of elements");
             }
+
+            Array.Resize(ref _array, (int)_size);
 
             _array[_count++] = item;
         }
