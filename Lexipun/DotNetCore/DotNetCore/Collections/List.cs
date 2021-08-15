@@ -9,8 +9,8 @@ namespace DotNetCore.Collections
     public class List<T> : ICloneable, ICollection<T>, IComparable<T>, IComparer<T>, IEnumerable<T>, IDisposable, IConvertible, IList<T>
     {
         private T[] _array;
-        private uint _size;
-        private uint _count;
+        private int _size;
+        private int _count;
 
         public T this[int index]
         {
@@ -24,7 +24,8 @@ namespace DotNetCore.Collections
                 return _array[index];
 
             }
-            set {
+            set
+            {
 
                 if (index < 0 || index >= _size)
                 {
@@ -32,12 +33,12 @@ namespace DotNetCore.Collections
                 }
 
                 _array[index] = value;
-            }   
+            }
         }
 
-        public int Count => (int)_count;
+        public int Count => _count;
 
-        public bool IsReadOnly =>  false;
+        public bool IsReadOnly => false;
 
         public List()
         {
@@ -54,7 +55,7 @@ namespace DotNetCore.Collections
         }
         public List(ICollection<T> elements)
         {
-            _size = (uint)elements.Count;
+            _size = elements.Count;
             _array = new T[_size];
             _count = _size;
 
@@ -63,12 +64,12 @@ namespace DotNetCore.Collections
 
         public void Add(T item)
         {
-            if(item is null)
+            if (item is null)
             {
                 throw new ArgumentNullException("passed null to adding in List");
             }
 
-            if(_size > _count)
+            if (_size > _count)
             {
                 _array[_count++] = item;
                 return;
@@ -76,19 +77,65 @@ namespace DotNetCore.Collections
 
             _size *= 2;
 
-            if(_size > uint.MaxValue)
+            if (_size > int.MaxValue)
             {
-                _size = uint.MaxValue;
+                _size = int.MaxValue;
             }
 
-            if(_count == uint.MaxValue)
+            if (_count == int.MaxValue)
             {
                 throw new OutOfMemoryException("over much count of elements");
             }
 
-            Array.Resize(ref _array, (int)_size);
+            Array.Resize(ref _array, _size);
 
             _array[_count++] = item;
+        }
+        public void AddRange(IEnumerable<T> enumerable)
+        {
+            if (enumerable is null)
+            {
+                return;
+            }
+
+            ICollection<T> collection = enumerable as ICollection<T>;
+
+            if (collection is null)
+            {
+                using (IEnumerator<T> enumerator = enumerable.GetEnumerator())
+                {
+                    while (enumerator.MoveNext())
+                    {
+                        Add(enumerator.Current);
+                    }
+                }
+                return;
+            }
+
+            int newCount = _count + collection.Count - 1;
+
+            if(newCount > int.MaxValue)
+            {
+                throw new OutOfMemoryException("over much count of elements");
+            }
+
+            if (newCount >= _size)
+            {
+                _size *= 2;
+
+                if (newCount > _size)
+                {
+                    _size = newCount;
+                    Array.Resize(ref _array, newCount);
+                }
+                else
+                {
+                    Array.Resize(ref _array, _size);
+                }
+            }
+
+            collection.CopyTo(_array, _count);
+
         }
 
         public void Clear()
